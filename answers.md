@@ -1,7 +1,8 @@
-¿Qué es un closure? ¿Dónde en el código hay un closure?
+What is a closure? Where in the code is there a closure?
 
-Un closure es una función que recuerda el contexto en el que fue creada, es decir, guarda las variables que estaban en su alcance en ese momento. En este código, un ejemplo de closure es la función sortItems() dentro de sortingMixin. Esta función accede a sortKey y sortAsc, propiedades definidas en data del mixin, para alternar el orden de los elementos según estos valores. Gracias a los closures, la función sortItems() puede “recordar” y usar estos valores aunque esté siendo llamada desde otro componente.
+A closure is a function that remembers the context in which it was created, meaning it retains the variables that were within its scope at that time. In this code, an example of a closure is the sortItems() function within sortingMixin. This function accesses sortKey and sortAsc, properties defined in the mixin’s data, to toggle the sorting order of elements based on these values. Thanks to closures, the sortItems() function can "remember" and use these values even when it’s called from another component.
 
-¿Cuáles son los posibles efectos secundarios en alguna función? ¿Podrías señalar algún caso en tu código? ¿Son esperados? ¿Pueden evitarse?
+What are the possible side effects in any function? Could you point out any such cases in your code? Are they expected? Can they be avoided?
 
-Los efectos secundarios ocurren cuando una función cambia algo fuera de su alcance directo, como el estado global, el DOM, o al hacer una solicitud HTTP. En fetchJokes(), el efecto secundario esperado es la actualización de jokes en el estado data porque hace una solicitud HTTP. Este efecto es necesario para traer los datos de la API y no debería evitarse. Sin embargo, agregamos un manejo de errores para evitar que, en caso de fallos en la solicitud, la aplicación se comporte de forma inesperada.
+Side effects occur when a function changes something outside of its direct scope, like the global state, the DOM, or when making an HTTP request. In fetchJokes(), the expected side effect is updating jokes in the data state because it makes an HTTP request. This effect is necessary to retrieve data from the API and should not be avoided. However, we included error handling to prevent unexpected behavior in the application in case the request fails.
+

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>Lista de Chistes</h1>
+    <h1>Joke List</h1>
 
-    <div v-if="isLoading">Cargando chistes...</div>
+    <div v-if="isLoading">Loading jokes...</div>
 
-    <p v-if="!isLoading && jokes.length === 0 && !error">No hay chistes disponibles en este momento.</p>
+    <p v-if="!isLoading && jokes.length === 0 && !error">No jokes available at the moment.</p>
 
     <table v-if="!isLoading && jokes.length">
       <thead>
@@ -14,7 +14,7 @@
             @keydown.enter="sortItems('setup')"
             :class="{ 'sorted-asc': sortKey === 'setup' && sortAsc, 'sorted-desc': sortKey === 'setup' && !sortAsc }"
             tabindex="0"
-            aria-label="Ordenar por setup"
+            aria-label="Sort by setup"
             scope="col"
           >
             Setup
@@ -24,7 +24,7 @@
             @keydown.enter="sortItems('punchline')"
             :class="{ 'sorted-asc': sortKey === 'punchline' && sortAsc, 'sorted-desc': sortKey === 'punchline' && !sortAsc }"
             tabindex="0"
-            aria-label="Ordenar por punchline"
+            aria-label="Sort by punchline"
             scope="col"
           >
             Punchline
@@ -41,7 +41,7 @@
 
     <div v-if="error" class="error">{{ error }}</div>
 
-    <label v-if="!isLoading && jokes.length" for="jokesPerPage">Chistes por página:</label>
+    <label v-if="!isLoading && jokes.length" for="jokesPerPage">Jokes per page:</label>
     <select v-if="!isLoading && jokes.length" v-model="jokesPerPage" id="jokesPerPage">
       <option value="5">5</option>
       <option value="10">10</option>
@@ -52,16 +52,16 @@
       <button
         @click="prevPage"
         :disabled="currentPage === 1"
-        aria-label="Página anterior"
+        aria-label="Previous page"
       >
-        Atrás
+        Previous
       </button>
       <button
         @click="nextPage"
         :disabled="currentPage === totalPages"
-        aria-label="Página siguiente"
+        aria-label="Next page"
       >
-        Siguiente
+        Next
       </button>
     </div>
   </div>
@@ -105,7 +105,7 @@ export default {
         this.error = null;
         this.jokes = await fetchJokes();
       } catch (error) {
-        this.error = "No se pudieron cargar los chistes. Intenta de nuevo más tarde.";
+        this.error = "Unable to load jokes. Please try again later.";
       } finally {
         this.isLoading = false;
       }
